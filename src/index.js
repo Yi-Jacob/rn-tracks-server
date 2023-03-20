@@ -6,14 +6,15 @@ const bodyParser = require("body-parser");
 const authRoutes = require("./routes/authRoutes");
 const trackRoutes = require("./routes/trackRoutes");
 const requireAuth = require("./middlewares/requireAuth");
-
+require('dotenv').config()
+console.log(process.env)
 const app = express();
 
-app.use(bodyParser.json());
+app.use(bodyParser.json());0
 app.use(authRoutes);
 app.use(trackRoutes);
 
-const mongoUri = "";
+const mongoUri = `${process.env.mongo_uri}`;
 if (!mongoUri) {
   throw new Error(
     `MongoURI was not supplied.  Make sure you watch the video on setting up Mongo DB!`
